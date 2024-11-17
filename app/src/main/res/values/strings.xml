@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">ChildMonitoringApp</string>
+    <string name="login">Login</string>
+    <string name="password">password\n</string>
+    <string name="email">email</string>
+    <string name="register">register\n</string>
+    <string name="Register">Register\n</string>
+</resources>
