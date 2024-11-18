@@ -77,6 +77,6 @@
         android:layout_height="17dp"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
-        android:contentDescription="@string/help"
+        android:contentDescription="@string/help_icon_desc"
         android:src="@drawable/help_pic" />
 </LinearLayout>
