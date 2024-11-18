@@ -45,22 +45,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:minHeight="48dp"
-            android:padding="8dp"
-            android:inputType="textPassword" />
+            android:padding="8dp" />
     </com.google.android.material.textfield.TextInputLayout>
-
-    <!-- "Forgot Password" TextView -->
-    <TextView
-        android:id="@+id/forgot_password"
-        android:text="@string/forgot_password"
-        android:textColor="@android:color/holo_blue_light"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end"
-        android:textSize="14sp"
-        android:layout_marginBottom="20dp"
-        android:clickable="true"
-        android:focusable="true" />
 
     <Button
         android:id="@+id/btn_login"
@@ -69,14 +55,4 @@
         android:layout_height="wrap_content"
         android:minHeight="48dp"
         android:paddingHorizontal="16dp" />
-
-    <!-- Help icon -->
-    <ImageView
-        android:id="@+id/help_icon"
-        android:layout_width="19dp"
-        android:layout_height="17dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        android:contentDescription="@string/help"
-        android:src="@drawable/help_pic" />
 </LinearLayout>
