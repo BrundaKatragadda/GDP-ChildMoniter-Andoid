@@ -16,7 +16,6 @@ import androidx.core.view.WindowInsetsCompat;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.AuthResult;
 
 public class register extends AppCompatActivity {
     TextInputEditText editTextEmail, editTextPassword;
@@ -24,8 +23,6 @@ public class register extends AppCompatActivity {
     FirebaseAuth mAuth;
     ProgressBar progressBar;
     TextView textView;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,24 +50,27 @@ public class register extends AppCompatActivity {
         buttonReg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                progressBar.setVisibility(view.VISIBLE);
-                String email = String.valueOf(editTextEmail.getText());
-                String password = String.valueOf(editTextPassword.getText());
+                String email = String.valueOf(editTextEmail.getText()).trim();
+                String password = String.valueOf(editTextPassword.getText()).trim();
 
                 if (TextUtils.isEmpty(email)) {
-                    Toast.makeText(register.this, "account created", Toast.LENGTH_SHORT).show();
+                    progressBar.setVisibility(View.GONE);
+                    Toast.makeText(register.this, "Enter Email", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 if (TextUtils.isEmpty(password)) {
+                    progressBar.setVisibility(View.GONE);
                     Toast.makeText(register.this, "Enter Password", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
+                progressBar.setVisibility(View.VISIBLE);
+
                 // Create user with email and password
                 mAuth.createUserWithEmailAndPassword(email, password)
                         .addOnCompleteListener(task -> {
-                            progressBar.setVisibility(View.GONE);
+                            progressBar.setVisibility(View.GONE); // Hide progress bar after task
                             if (task.isSuccessful()) {
                                 // Sign in success
                                 FirebaseUser user = mAuth.getCurrentUser();
@@ -81,6 +81,14 @@ public class register extends AppCompatActivity {
                             }
                         });
             }
+        });
+
+        // Add click listener for "Login Now" text view
+        textView.setOnClickListener(v -> {
+            // Redirect to login activity (if implemented)
+            Toast.makeText(register.this, "Redirecting to Login...", Toast.LENGTH_SHORT).show();
+            // Example: Intent intent = new Intent(register.this, LoginActivity.class);
+            // startActivity(intent);
         });
     }
 }
