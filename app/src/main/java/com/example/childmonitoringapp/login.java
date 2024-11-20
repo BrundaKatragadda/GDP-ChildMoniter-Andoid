@@ -2,10 +2,12 @@ package com.example.childmonitoringapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -49,6 +51,21 @@ public class login extends AppCompatActivity {
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String email = String.valueOf(editTextEmail.getText()).trim();
+                String password = String.valueOf(editTextPassword.getText()).trim();
+
+                if (TextUtils.isEmpty(email)) {
+                    progressBar.setVisibility(View.GONE);
+                    Toast.makeText(login.this, "Enter Email", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (TextUtils.isEmpty(password)) {
+                    progressBar.setVisibility(View.GONE);
+                    Toast.makeText(login.this, "Enter Password", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
 
             }
         });
