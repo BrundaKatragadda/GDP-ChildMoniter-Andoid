@@ -26,8 +26,8 @@
       android:layout_marginBottom="12dp">
 
     <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/mail"
-        android:hint="@string/mail"
+        android:id="@+id/email"
+        android:hint="@string/email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minHeight="48dp"
@@ -47,7 +47,11 @@
         android:minHeight="48dp"
         android:padding="8dp" />
   </com.google.android.material.textfield.TextInputLayout>
-
+  <ProgressBar
+      android:id="@+id/progressBar"
+      android:visibility="gone"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"/>
   <Button
       android:id="@+id/btn_register"
       android:text="@string/Register"
@@ -55,4 +59,12 @@
       android:layout_height="wrap_content"
       android:minHeight="48dp"
       android:paddingHorizontal="16dp" />
+  <TextView
+      android:textStyle="bold"
+      android:textSize="20sp"
+      android:gravity="center"
+      android:id="@+id/loginNow"
+      android:text="@string/click_to_login"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"/>
 </LinearLayout>
