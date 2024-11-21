@@ -1,5 +1,6 @@
 package com.example.childmonitoringapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -45,6 +46,15 @@ public class register extends AppCompatActivity {
         buttonReg = findViewById(R.id.btn_register);
         progressBar = findViewById(R.id.progressBar);
         textView = findViewById(R.id.loginNow);
+        textView.setOnClickListener(new View.OnClickListener(){
+                                        @Override
+                                        public void onClick(View view) {
+                                            Intent intent = new Intent(getApplicationContext().login.class);
+                                            startActivity(intent);
+                                            finish();
+                                        }
+                                    });
+
 
         // Set click listener for the register button
         buttonReg.setOnClickListener(new View.OnClickListener() {
