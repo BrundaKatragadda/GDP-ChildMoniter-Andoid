@@ -7,4 +7,5 @@
     <string name="Register">Register\n</string>
     <string name="click_to_login">click_to_login</string>
     <string name="click_here_to_register">click_here_to_register</string>
+    <string name="logout">logout</string>
 </resources>

@@ -2,7 +2,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:gravity="center"
@@ -13,12 +12,12 @@
         android:id="@+id/user_details"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"/>
+        android:text="Hello World!" />
+
     <Button
         android:text="@string/logout"
         android:id="@+id/logout"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-
+        android:layout_height="wrap_content" />
 
 </LinearLayout>
