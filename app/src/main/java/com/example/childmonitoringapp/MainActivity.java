@@ -1,26 +1,36 @@
 package com.example.childmonitoringapp;
 
+
 import android.content.Intent;
 import android.os.Bundle;
+<<<<<<< HEAD
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+=======
+import android.widget.Button;
+>>>>>>> 48c8d2dd90aef532a0813bdcd2dcb1dcb8598bf9
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
+<<<<<<< HEAD
     FirebaseAuth auth;
     Button button; // Variable name is now button
     TextView textView;
     FirebaseUser user;
+=======
+
+    private Button btnLogout;
+>>>>>>> 48c8d2dd90aef532a0813bdcd2dcb1dcb8598bf9
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+<<<<<<< HEAD
 
         // Initialize FirebaseAuth
         auth = FirebaseAuth.getInstance();
@@ -53,6 +63,15 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
                 finish();
             }
+=======
+
+        btnLogout = findViewById(R.id.btnLogout);
+
+        btnLogout.setOnClickListener(v -> {
+            FirebaseAuth.getInstance().signOut();
+            startActivity(new Intent(MainActivity.this, Login.class));
+            finish();
+>>>>>>> 48c8d2dd90aef532a0813bdcd2dcb1dcb8598bf9
         });
     }
 }
