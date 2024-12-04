@@ -1,5 +1,6 @@
 package com.example.childmonitoringapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.Button;
@@ -68,6 +69,10 @@ public class Register extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         // Save additional user data to Firestore
                         saveUserData(name, email, securityAnswer);
+                        Toast.makeText(Register.this, "User registered successfully", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(Register.this, Login.class);
+                        startActivity(intent);
+                        finish();
                     } else {
                         Toast.makeText(Register.this, "Registration failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                     }
@@ -85,8 +90,9 @@ public class Register extends AppCompatActivity {
         db.collection("users")
                 .add(user)
                 .addOnSuccessListener(documentReference -> {
-                    Toast.makeText(Register.this, "User registered successfully", Toast.LENGTH_SHORT).show();
-                    finish(); // Close the activity
+
+                    // Redirect to Login
+
                 })
                 .addOnFailureListener(e -> {
                     Toast.makeText(Register.this, "Error storing user data", Toast.LENGTH_SHORT).show();
