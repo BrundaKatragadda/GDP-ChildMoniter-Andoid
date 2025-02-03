@@ -7,30 +7,8 @@
     android:padding="16dp">
 
     <TextView
-        android:id="@+id/tvWelcome"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-<<<<<<< HEAD
-        android:text="Hello World!"/>
-
-    <Button
-        android:id="@+id/logout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="Logout" />
-
-
-</LinearLayout>
-=======
-        android:text="Welcome to the Home Page!"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="20dp" />
-
-    <Button
-        android:id="@+id/btnLogout"
+        android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Logout" />
+        android:text="welcome to child APP" />
 </LinearLayout>
->>>>>>> 48c8d2dd90aef532a0813bdcd2dcb1dcb8598bf9
