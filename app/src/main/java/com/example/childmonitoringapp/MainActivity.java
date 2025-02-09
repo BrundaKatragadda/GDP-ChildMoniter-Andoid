@@ -1,61 +1,73 @@
 package com.example.childmonitoringapp;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.widget.TextView;
-
-import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
-
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import android.widget.Button;
+
+
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
 
     FirebaseAuth auth;
-    Button button;
+    Button button; // Variable name is now button
     TextView textView;
     FirebaseUser user;
+
+
+    private Button btnLogout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Initialize FirebaseAuth
         auth = FirebaseAuth.getInstance();
-        button = findViewById(R.id.logout);
+
+        // Find views by their IDs
+        button = findViewById(R.id.logout); // Logout button assigned to button
         textView = findViewById(R.id.user_details);
+
+        // Get the current user
         user = auth.getCurrentUser();
-        if (user == null){
-            Intent intent = new Intent(getApplicationContext(), Login.class);
+
+        // Check if the user is logged in
+        if (user == null) {
+            Intent intent = new Intent(getApplicationContext(),Login.class);
             startActivity(intent);
             finish();
-        }
-        else {
+        } else {
+            // Display the user's email
             textView.setText(user.getEmail());
         }
 
+        // Set up the logout button listener
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // Sign out the user
                 FirebaseAuth.getInstance().signOut();
-                Intent intent = new Intent(getApplicationContext(), Login.class);
+                // Redirect to Login activity
+                Intent intent = new Intent(getApplicationContext(),Login.class);
                 startActivity(intent);
                 finish();
             }
+
+        btnLogout = findViewById(R.id.btnLogout);
+
+        btnLogout.setOnClickListener(v -> {
+            FirebaseAuth.getInstance().signOut();
+            startActivity(new Intent(MainActivity.this, Login.class));
+            finish();
         });
     }
 }
