@@ -60,4 +60,15 @@ public class Login extends AppCompatActivity {
                     }
                 });
     }
+
+    class GeoFencingActivity : AppCompatActivity() {
+        private lateinit var binding: ActivityGeoFencingBinding
+
+        override fun onCreate(savedInstanceState: Bundle?) {
+            super.onCreate(savedInstanceState)
+            enableEdgeToEdge()
+            binding = ActivityGeoFencingBinding.inflate(layoutInflater)
+            setContentView(binding.root)
+        }
+    }
 }

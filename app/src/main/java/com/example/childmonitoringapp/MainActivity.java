@@ -70,4 +70,27 @@ public class MainActivity extends AppCompatActivity {
             finish();
         });
     }
+        class ChildMainActivity : AppCompatActivity() {
+            private lateinit var binding: ActivityChildMainBinding
+
+            override fun onCreate(savedInstanceState: Bundle?) {
+                super.onCreate(savedInstanceState)
+                enableEdgeToEdge()
+                binding = ActivityChildMainBinding.inflate(layoutInflater)
+                setContentView(binding.root)
+                startService(Intent(this, LocationService::class.java))
+                getChildInfo()
+            }
+
+            private fun getChildInfo() {
+                val db = FirebaseFirestore.getInstance()
+                db.collection("user").whereEqualTo("email", PrefsHelper.getData("userEmail")).get()
+                        .addOnSuccessListener { documents ->
+                        binding.childName.text = "Welcome ${documents.first().getString("username")}"
+                }
+            .addOnFailureListener { e ->
+                        e.printStackTrace()
+                }
+            }
+        }
 }
