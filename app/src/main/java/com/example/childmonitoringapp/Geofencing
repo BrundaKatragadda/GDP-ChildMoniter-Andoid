@@ -1,0 +1,17 @@
+package com.org.childmonitorparent.child.activities
+
+import android.os.Bundle
+import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AppCompatActivity
+import com.org.childmonitorparent.databinding.ActivityGeoFencingBinding
+
+class GeoFencingActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityGeoFencingBinding
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+        binding = ActivityGeoFencingBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+    }
+}
