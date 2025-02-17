@@ -93,4 +93,81 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }
+        public void statusCheck() {
+            final LocationManager manager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+
+            if (!manager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+                buildAlertMessageNoGps();
+
+            }
+        }
+
+        private void buildAlertMessageNoGps() {
+            final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("Your GPS seems to be disabled, do you want to enable it?")
+                    .setCancelable(false)
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        public void onClick(final DialogInterface dialog, final int id) {
+                            startActivity(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+                        }
+                    })
+                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        public void onClick(final DialogInterface dialog, final int id) {
+                            dialog.cancel();
+                        }
+                    });
+            final AlertDialog alert = builder.create();
+            alert.show();
+        }
+        protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_main);
+
+            messageInput = findViewById(R.id.messageInput);
+            sendButton = findViewById(R.id.sendButton);
+            chatRecyclerView = findViewById(R.id.chatRecyclerView);
+            chatRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+            chatMessages = new ArrayList<>();
+            chatAdapter = new ChatAdapter(chatMessages);
+            chatRecyclerView.setAdapter(chatAdapter);
+
+            // Initialize Firebase Database reference
+            chatRef = FirebaseDatabase.getInstance().getReference("chats");
+
+            // Send button listener
+            sendButton.setOnClickListener(v -> sendMessage());
+
+            // Listen for new messages in Firebase
+            chatRef.addChildEventListener(new ChildEventListener() {
+                @Override
+                public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String previousChildName) {
+                    ChatMessage newMessage = dataSnapshot.getValue(ChatMessage.class);
+                    chatMessages.add(newMessage);
+                    chatAdapter.notifyDataSetChanged();
+                    chatRecyclerView.scrollToPosition(chatMessages.size() - 1);
+                }
+
+                @Override
+                public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String previousChildName) {}
+
+                @Override
+                public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {}
+
+                @Override
+                public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String previousChildName) {}
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {}
+            });
+        }
+
+        private void sendMessage() {
+            String messageText = messageInput.getText().toString().trim();
+            if (!messageText.isEmpty()) {
+                String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                ChatMessage newMessage = new ChatMessage(messageText, userId);
+                chatRef.push().setValue(newMessage);
+                messageInput.setText("");
+            }
+        }
 }
