@@ -5,5 +5,7 @@
     <color name="deep_navy_blue">#000080</color>
     <color name="soft_blue_gray">#A8B8C8</color>
     <color name="dark_blue_gray">#3B4856</color>
-
+    <color name="gray">#808080</color>
+    <color name="dark_gray">#A9A9A9</color>
+    <color name="blue">#0000FF</color>
 </resources>
